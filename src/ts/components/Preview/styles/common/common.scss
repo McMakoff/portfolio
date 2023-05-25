@@ -1,9 +1,13 @@
 .preview {
-  padding-top: 30px;
+  padding-top: 24px;
+}
+
+.top {
+  margin-bottom: 40px;
 }
 
 .name {
-  width: 180px;
+  width: 120px;
 }
 
 .text {
@@ -13,4 +17,8 @@
 .logo {
   display: block;
   margin: 0 auto;
+}
+
+.switch {
+  display: none;
 }

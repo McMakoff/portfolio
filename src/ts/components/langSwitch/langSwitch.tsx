@@ -38,7 +38,9 @@ const LangSwitch = ({className, size = 'big'}: ILangSwitch) => {
               <use xlinkHref={`./img/sprite.svg#${item}`}/>
             </svg>
           </button>
-          {(langs.length - 1 > index) && <span className={styles.switchSeparator}/>}
+          {(langs.length - 1 > index) && (
+            <span className={jc([styles.switchSeparator, styles[`switchSeparator_${size}`],])}/>
+          )}
         </React.Fragment>
       ))}
     </div>
