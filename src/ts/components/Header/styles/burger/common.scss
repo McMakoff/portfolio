@@ -1,0 +1,47 @@
+.navBurger {
+  position: fixed;
+  top: $headerNavTopPosition;
+  right: $horizontalPadding;
+  z-index: 1;
+  display: block;
+  width: 30px;
+  height: 20px;
+}
+
+.navBurgerItem {
+  width: 100%;
+  position: absolute;
+  height: 4px;
+  transition: transform .2s, opacity .2s;
+  transform-origin: center center;
+  background-color: #000;
+
+  &:nth-child(1) {
+    top: 0;
+  }
+
+  &:nth-child(2) {
+    top: calc(50% - 2px);
+  }
+
+  &:nth-child(3) {
+    bottom: 0;
+  }
+}
+
+.navBurgerActive {
+  & .navBurgerItem {
+    &:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: translateY(-8px)  rotate(-45deg);
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.switch {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.switchBtn {
+  flex-shrink: 0;
+  padding: 0;
+  color: $lightColor;
+  transition: color .2s;
+}
+
+.switchBtn_big {
+  width: 24px;
+  height: 36px;
+}
+
+.switchBtn_small {
+  width: 12px;
+  height: 18px;
+}
+
+.switchBtn_active {
+  color: inherit;
+}
+
+.switchIcon {
+  width: 100%;
+  height: 100%;
+}
+
+.switchSeparator {
+  flex-shrink: 0;
+  width: 100%;
+  height: 4px;
+  margin: 12px 0;
+  background: $baseColor;
+}

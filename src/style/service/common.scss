@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  color: $baseColor;
+  font: 500 18px/1.2 Gilroy, sans-serif;
+  background: $bgColor;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+}

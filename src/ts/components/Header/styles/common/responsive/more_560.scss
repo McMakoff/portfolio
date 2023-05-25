@@ -1,0 +1,11 @@
+@media (min-width: $mediaMore560) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    padding: 15px 0;
+    background: $bgColor;
+    transform: translateX(-50%);
+    border-bottom: 1px solid $lightColor;
+  }
+}

@@ -1,0 +1,81 @@
+.nav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  right: $horizontalPadding;
+  opacity: 0;
+  width: calc(100vw - #{$horizontalPadding * 2});
+  height: calc(100vh - #{$headerNavTopPosition});
+  padding-top: $headerNavTopPosition;
+  background: $bgColor;
+  transform: translateX(101%);
+}
+
+
+
+.navOpen {
+  opacity: 1;
+  transform: translateX(0);
+
+  & .navLink {
+    pointer-events: auto;
+  }
+}
+
+.navAnim {
+  transition: transform .3s, opacity .3s;
+}
+
+.navList {
+  flex-grow: 1;
+  min-height: 1px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &:after {
+    content: "";
+    display: block;
+    height: $headerNavBottomPadding;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.navItem {
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.navItemActive {
+  & .navLink {
+    color: inherit !important;
+  }
+}
+
+.navLink {
+  color: $lightColor !important;
+  font-weight: 700;
+  font-size: 34px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: color .2s;
+  pointer-events: none;
+
+  &:hover {
+    color: inherit !important;
+  }
+}
+
+.navSwitch {
+  position: absolute;
+  right: 0;
+  bottom: $headerNavBottomPadding;
+}

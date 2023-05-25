@@ -1,0 +1,33 @@
+@media (min-width: $mediaMore560) {
+  .nav {
+    position: static;
+    width: auto;
+    height: auto;
+    padding-top: 0;
+    opacity: 1;
+    transform: none;
+    transition: none;
+
+    & .navSwitch {
+      display: none;
+    }
+  }
+
+  & .navList {
+    display: flex;
+    justify-content: space-between;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  & .navItem {
+    margin-bottom: 0;
+  }
+
+  & .navLink {
+    font-size: 18px;
+    pointer-events: auto;
+  }
+}

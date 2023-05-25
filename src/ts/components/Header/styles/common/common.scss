@@ -1,0 +1,5 @@
+.header {
+  width: calc(100vw - #{$horizontalPadding * 2});
+  max-width: $maxWidth;
+  overflow: hidden;
+}
