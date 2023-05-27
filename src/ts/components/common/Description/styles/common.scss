@@ -1,0 +1,12 @@
+.desc {
+  text-align: center;
+
+  & + .desc {
+    margin-top: 35px;
+  }
+}
+
+.desc_light {
+  color: $lightColor;
+}
+
