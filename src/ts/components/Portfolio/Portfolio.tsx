@@ -27,7 +27,7 @@ const Portfolio = () => {
       </BlockTitle>
       <ul className={styles.works}>
         {works.map((item) => (
-          <li className={styles.work}>
+          <li key={item.name} className={styles.work}>
             <a
               href={`https://mcmakoff.github.io/${item.name}`}
               className={styles.workPreview}

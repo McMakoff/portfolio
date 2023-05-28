@@ -4,6 +4,7 @@ import Home from "./Home/Home";
 import AboutMe from "./AboutMe/AboutMe";
 import Skills from "./Skills/Skills";
 import Portfolio from "./Portfolio/Portfolio";
+import Contacts from "./Contacts/Contacts";
 const Page = () => (
   <>
     <Header/>
@@ -11,6 +12,7 @@ const Page = () => (
     <AboutMe/>
     <Skills/>
     <Portfolio/>
+    <Contacts/>
   </>
 );
 

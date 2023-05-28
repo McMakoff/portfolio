@@ -34,7 +34,7 @@ const Skills = () => {
       </Description>
       <ul className={styles.skills}>
         {skills.map((item) => (
-          <li className={styles.skill}>
+          <li key={item.name} className={styles.skill}>
             <svg className={styles.skillIcon}>
               <use xlinkHref={`./img/sprite.svg#${item.icon}`}/>
             </svg>
