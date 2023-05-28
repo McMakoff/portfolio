@@ -2,14 +2,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 40px -10px -10px;
+  margin: 40px #{$portfolioItemMargin * -1} #{$portfolioItemMargin * -1};
 }
 
 .work {
   flex: 1 1;
   max-width: 360px;
   min-width: 260px;
-  margin: 10px;
+  margin: $portfolioItemMargin;
 }
 
 .workPreview {
