@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./Header/Header";
-import Preview from "./Preview/Preview";
+import Home from "./Home/Home";
 import AboutMe from "./AboutMe/AboutMe";
 import Skills from "./Skills/Skills";
 const Page = () => (
   <>
     <Header/>
-    <Preview/>
+    <Home/>
     <AboutMe/>
     <Skills/>
   </>

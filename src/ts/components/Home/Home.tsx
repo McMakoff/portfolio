@@ -3,8 +3,8 @@ import styles from "./style.m.scss";
 import LangSwitch from "./../langSwitch/langSwitch";
 import React from "react";
 
-const Preview = () => (
-  <Wrapper id="home" className={styles.preview}>
+const Home = () => (
+  <Wrapper id="home" className={styles.home}>
     <div className={styles.top}>
       <svg className={styles.name}>
         <use xlinkHref={`./img/sprite.svg#name`}/>
@@ -19,4 +19,4 @@ const Preview = () => (
   </Wrapper>
 );
 
-export default Preview
+export default Home
