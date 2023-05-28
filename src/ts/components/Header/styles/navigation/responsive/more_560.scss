@@ -1,10 +1,13 @@
 @media (min-width: $mediaMore560) {
   .nav {
     position: static;
-    width: auto;
+    margin: auto;
+    width: calc(100vw - #{$horizontalPadding * 2});
+    max-width: $maxWidth;
     height: auto;
-    padding: 0;
+    padding: 15px 0;
     opacity: 1;
+    border-bottom: 1px solid $lightColor;
     transform: none;
     transition: none;
 

@@ -58,6 +58,7 @@
 .navItemActive {
   & .navLink {
     color: inherit !important;
+    pointer-events: none;
   }
 }
 

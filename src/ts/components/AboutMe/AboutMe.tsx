@@ -4,7 +4,7 @@ import BlockTitle from "./../common/BlockTitle/BlockTitle";
 import Description from "./../common/Description/Description";
 const AboutMe = () => {
   return (
-    <Wrapper id="#about" theme='dark'>
+    <Wrapper id="about" theme='dark'>
       <BlockTitle>
         About me
       </BlockTitle>

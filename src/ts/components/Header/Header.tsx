@@ -21,7 +21,11 @@ const Header = () => {
   const [animMenu, setAnimMenu] = useState(false);
 
   const onLinkClick = (e: MouseEvent, item: string) => {
-    e.preventDefault();
+    /*e.preventDefault();*/
+    if (openMenu) {
+      setAnimMenu(true);
+      setOpenMenu(false);
+    }
     setActiveItem(item);
   };
 

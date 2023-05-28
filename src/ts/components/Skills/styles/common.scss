@@ -1,0 +1,23 @@
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px -10px -20px;
+}
+
+.skill {
+  flex-shrink: 0;
+  width: 80px;
+  margin: 20px 10px;
+  color: $lightColor;
+  font-size: 14px;
+  text-align: center;
+}
+
+.skillIcon {
+  display: block;
+  width: 100%;
+  height: 64px;
+  margin-bottom: 10px;
+}
+
