@@ -1,0 +1,32 @@
+.works {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px -10px -10px;
+}
+
+.work {
+  flex: 1 1;
+  max-width: 360px;
+  min-width: 260px;
+  margin: 10px;
+}
+
+.workPreview {
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 6px 1px $lightColor;
+}
+
+.workImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform .2s;
+
+  &:hover {
+    transform: scale(1.3);
+  }
+}
+
