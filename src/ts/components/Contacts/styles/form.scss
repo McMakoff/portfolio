@@ -1,0 +1,47 @@
+.form {
+  max-width: 400px;
+  margin: 40px auto 20px;
+}
+
+.input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+  color: inherit;
+  font: inherit;
+  font-weight: 400;
+  border: 1px solid $lightColor;
+  border-radius: 10px;
+  resize: none;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &::placeholder {
+    color: $lightColor;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $baseColor;
+  }
+}
+
+.sendBtn {
+  display: block;
+  box-sizing: border-box;
+  margin: 0 auto 40px;
+  padding: 0 30px;
+  color: $extraLightColor;
+  font-weight: 700;
+  line-height: 42px;
+  border-radius: 20px;
+  background: $baseColor;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

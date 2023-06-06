@@ -10,9 +10,9 @@ interface ISocial {
 }
 
 const socials = [
-  {name: 'vk', link: 'https://vk.com/id389278152'},
   {name: 'tg', link: 'https://t.me/m9a0k'},
   {name: 'ws', link: 'https://wa.me/+79230387064'},
+  {name: 'vk', link: 'https://vk.com/id389278152'},
   {name: 'gmail', link: 'mailto:twopapavers@gmail.com'},
   {name: 'phone', link: 'tel:+79230387064'},
 ];
@@ -25,6 +25,29 @@ const Contacts = () => {
       <Description>
         Want to know more or just chat? <br/> You are welcome!
       </Description>
+      <form action="" className={styles.form}>
+        <input
+          type="text"
+          name={'name'}
+          className={styles.input}
+          placeholder={'Name'}
+          required
+        />
+        <input
+          type="text"
+          name={'contact'}
+          className={styles.input}
+          placeholder={'Email or messenger'}
+          required
+        />
+        <textarea
+          name={'message'}
+          className={styles.input}
+          placeholder={'Message'}
+          rows={5}
+          required
+        />
+      </form>
       <button className={styles.sendBtn}>
         Send Message
       </button>
