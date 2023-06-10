@@ -9,13 +9,13 @@ const AboutMe = () => {
         About me
       </BlockTitle>
       <Description>
-        Hi, I'm Denis – UX/UI designer from Minsk. <br/> I'm interested in design and everything connected with it.
+        Здравствуйте! Меня зовут Александр, и я веб-разработчик. <br/> Свой первый сайт, сделал в 2018 году, с тех пор не могу остановиться!
       </Description>
       <Description>
-        I'm studying at courses "Web and mobile design <br/> interfaces" in IT-Academy.
+        Поработал как во фрилансе так и в крупной компании, <br/> на ресурсе занимающем 30е место в мире по посещаемости.
       </Description>
       <Description>
-        Ready to implement excellent projects <br/> with wonderful people.
+        Буду рад сотрудничеству и знакомству с интересными людьми!
       </Description>
     </Wrapper>
   );

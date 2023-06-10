@@ -29,7 +29,7 @@ const optimization = () => {
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: './main.tsx',
+  entry: './index.tsx',
   output: {
     filename: `./${fileName('js')}`,
     path: path.resolve(__dirname, 'app'),
@@ -48,7 +48,7 @@ module.exports = {
     open: true,
     compress: true,
     hot: true,
-    port: 3000,
+    port: 3001,
   },
   optimization: optimization(),
   plugins: [
@@ -60,7 +60,7 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: `./style/${fileName('css')}`,
+      filename: `./${fileName('css')}`,
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -68,6 +68,16 @@ module.exports = {
           context: path.resolve(__dirname, 'src'),
           from: path.resolve(__dirname, 'src/assets'),
           to: path.resolve(__dirname, 'app/assets'),
+          noErrorOnMissing: true,
+        }
+      ]
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          context: path.resolve(__dirname, 'src'),
+          from: path.resolve(__dirname, 'src/img'),
+          to: path.resolve(__dirname, 'app/img'),
           noErrorOnMissing: true,
         }
       ]
@@ -132,17 +142,10 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(?:|gif|png|jpg|jpeg|svg)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: './img/[name].[ext]'
-        }
-      },
-      {
         test: /\.(?:|woff2|ttf)$/,
         type: 'asset/resource',
         generator: {
-          filename: './fonts/[name].[ext]'
+          filename: './fonts/[name][ext]'
         }
       },
     ],

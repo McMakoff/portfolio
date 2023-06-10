@@ -1,5 +1,5 @@
 import "./index.html";
-import "./style/style.scss";
+import "./index.scss";
 import React from "react";
 import ReactDom from 'react-dom';
 import Page from "./ts/components/Page";

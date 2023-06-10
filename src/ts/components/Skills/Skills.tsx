@@ -30,7 +30,7 @@ const Skills = () => {
         Skills
       </BlockTitle>
       <Description>
-        I work in such programs as
+        Работаю с такими технологиями как
       </Description>
       <ul className={styles.skills}>
         {skills.map((item) => (
