@@ -1,9 +1,9 @@
 .wrapper {
   box-sizing: border-box;
-  width: calc(100% - #{$horizontalPadding * 2});
+  width: 100%;
   max-width: $maxWidth;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 50px $horizontalPadding;
 }
 
 .wrapper_resetPV {

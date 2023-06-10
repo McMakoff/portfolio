@@ -1,12 +1,19 @@
 @media (min-width: $mediaMore560) {
   .home {
     padding-top: 90px;
+    padding-right: $horizontalPadding;
+    padding-left: $horizontalPadding;
   }
 
   .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  & .name {
+    width: 120px;
+    height: 52px
   }
 
   .text {
