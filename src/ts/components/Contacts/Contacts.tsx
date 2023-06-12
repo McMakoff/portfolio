@@ -1,9 +1,11 @@
-import React, {AnimationEventHandler, FormEvent, useRef, useState} from "react";
+import React, {FormEvent, useContext, useEffect, useRef, useState} from "react";
 import Wrapper from "./../common/Wrapper/Wrapper";
 import BlockTitle from "./../common/BlockTitle/BlockTitle";
 import Description from "./../common/Description/Description";
 import jc from "./../../Helpers/joinClassnames";
+import {PAGES} from "./../../Enums/PAGES";
 import styles from "./style.m.scss";
+import {PageContext} from "./../Page";
 
 interface ISocial {
   name: string;
@@ -18,10 +20,18 @@ const socials:ISocial[] = [
   {name: 'phone', link: 'tel:+79230387064'},
 ];
 const Contacts = () => {
+  const {onScrollPage} = useContext(PageContext);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [isStatusVisible, setStatusVisible] = useState(false);
+  const baseRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (baseRef.current) {
+      onScrollPage(baseRef.current, PAGES.CONTACTS);
+    }
+  }, []);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -63,7 +73,7 @@ const Contacts = () => {
   }
 
   return (
-    <Wrapper id="contacts">
+    <Wrapper ref={baseRef} id={PAGES.CONTACTS}>
       <BlockTitle>
         Contacts
       </BlockTitle>

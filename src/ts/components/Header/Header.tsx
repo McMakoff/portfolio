@@ -1,32 +1,58 @@
-import React, {MouseEvent, useState} from "react";
+import React, {MouseEvent, useContext, useEffect, useRef, useState} from "react";
 import styles from "./style.m.scss";
 import jc from "./../../Helpers/joinClassnames";
 import LangSwitch from "./../langSwitch/langSwitch";
+import {PAGES} from "./../../Enums/PAGES";
+import {PageContext} from "./../Page";
 
 interface INav {
   title: string;
-  url: string;
+  alias: PAGES;
 }
 
 const navs: INav[] = [
-  {title: 'Home', url: '#home'},
-  {title: 'About me', url: '#about'},
-  {title: 'Skills', url: '#skills'},
-  {title: 'Portfolio', url: '#portfolio'},
-  {title: 'Contacts', url: '#contacts'},
+  {title: 'Home', alias: PAGES.HOME},
+  {title: 'About me', alias: PAGES.ABOUT_ME},
+  {title: 'Skills', alias: PAGES.SKILLS},
+  {title: 'Portfolio', alias: PAGES.PORTFOLIO},
+  {title: 'Contacts', alias: PAGES.CONTACTS},
 ];
 const Header = () => {
-  const [activeItem, setActiveItem] = useState('Home');
+  const {activePage, changePage} = useContext(PageContext);
   const [openMenu, setOpenMenu] = useState(false);
   const [animMenu, setAnimMenu] = useState(false);
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
-  const onLinkClick = (e: MouseEvent, item: string) => {
-    /*e.preventDefault();*/
+  const onLinkClick = (e: MouseEvent, item: PAGES) => {
+    e.preventDefault();
+
     if (openMenu) {
       setAnimMenu(true);
       setOpenMenu(false);
     }
-    setActiveItem(item);
+
+    changePage(item);
+
+    const isBurgerVisible: boolean =
+      burgerRef.current
+        ? getComputedStyle(burgerRef.current).getPropertyValue('--burger-visible') === '1'
+        : false;
+
+    const itemEl = document.getElementById(item);
+
+    if (itemEl) {
+      const headerHeight = navRef.current?.offsetHeight ? navRef.current.offsetHeight : 0;
+      const offset =
+        (isBurgerVisible || item === PAGES.HOME)
+          ? itemEl.offsetTop
+          : itemEl.offsetTop - headerHeight;
+
+      window.scrollTo({
+        top: offset,
+        behavior: isBurgerVisible ? 'auto' : 'smooth',
+      });
+    }
   };
 
   const onBurgerClick = () => {
@@ -42,6 +68,7 @@ const Header = () => {
     <>
       <header className={styles.header}>
         <button
+          ref={burgerRef}
           className={jc([styles.navBurger, openMenu && styles.navBurgerActive])}
           onClick={onBurgerClick}
         >
@@ -50,6 +77,7 @@ const Header = () => {
           <div className={styles.navBurgerItem}/>
         </button>
         <nav
+          ref={navRef}
           className={jc([
             styles.nav,
             animMenu && styles.navAnim,
@@ -61,12 +89,12 @@ const Header = () => {
             {navs.map((item: INav) => (
               <li
                 key={item.title}
-                className={jc([styles.navItem, activeItem === item.title && styles.navItemActive])}
+                className={jc([styles.navItem, activePage === item.alias && styles.navItemActive])}
               >
                 <a
-                  href={`${item.url}`}
+                  href={`#${item.alias}`}
                   className={styles.navLink}
-                  onClick={(e) => onLinkClick(e, item.title)}
+                  onClick={(e) => onLinkClick(e, item.alias)}
                 >
                   {item.title}
                 </a>

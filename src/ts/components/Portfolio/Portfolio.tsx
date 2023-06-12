@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import Wrapper from "./../common/Wrapper/Wrapper";
 import BlockTitle from "./../common/BlockTitle/BlockTitle";
-import Description from "./../common/Description/Description";
+import {PAGES} from "./../../Enums/PAGES";
 import styles from "./style.m.scss";
+import {PageContext} from "./../Page";
 
 interface IWork {
   name: string,
@@ -20,8 +21,17 @@ const works: IWork[] = [
   {name: 'noemi', preview: 'html'},
 ];
 const Portfolio = () => {
+  const {onScrollPage} = useContext(PageContext);
+  const baseRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (baseRef.current) {
+      onScrollPage(baseRef.current, PAGES.PORTFOLIO);
+    }
+  }, []);
+
   return (
-    <Wrapper id="portfolio" theme={'dark'}>
+    <Wrapper ref={baseRef} id={PAGES.PORTFOLIO} theme={'dark'}>
       <BlockTitle>
         Portfolio
       </BlockTitle>

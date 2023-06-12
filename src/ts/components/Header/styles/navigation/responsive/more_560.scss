@@ -1,11 +1,12 @@
 @media (min-width: $mediaMore560) {
   .nav {
     position: static;
-    margin: auto;
-    width: calc(100vw - #{$horizontalPadding * 2});
+    display: flex;
+    width: calc(100% - #{$horizontalPadding * 2});
     max-width: $maxWidth;
-    height: auto;
-    padding: 15px 0;
+    height: 100%;
+    margin: auto;
+    padding: 0;
     opacity: 1;
     border-bottom: 1px solid $lightColor;
     transform: none;
@@ -19,6 +20,8 @@
   & .navList {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
 
     &:after {
       display: none;

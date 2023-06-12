@@ -1,5 +1,6 @@
 @media (min-width: $mediaMore560) {
   .navBurger {
+    --burger-visible: 0;
     display: none;
   }
 }

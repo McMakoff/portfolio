@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import Wrapper from "./../common/Wrapper/Wrapper";
 import BlockTitle from "./../common/BlockTitle/BlockTitle";
 import Description from "./../common/Description/Description";
 import styles from "./style.m.scss";
+import {PAGES} from "./../../Enums/PAGES";
+import {PageContext} from "./../Page";
 
 interface ISkill {
   name: string,
@@ -24,8 +26,17 @@ const skills: ISkill[] = [
   {name: 'Adobe Photoshop', icon: 'photoshop'},
 ];
 const Skills = () => {
+  const {onScrollPage} = useContext(PageContext);
+  const baseRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (baseRef.current) {
+      onScrollPage(baseRef.current, PAGES.SKILLS);
+    }
+  }, []);
+
   return (
-    <Wrapper id="skills">
+    <Wrapper ref={baseRef} id={PAGES.SKILLS}>
       <BlockTitle>
         Skills
       </BlockTitle>
