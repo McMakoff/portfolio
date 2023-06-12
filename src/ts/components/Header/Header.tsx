@@ -1,28 +1,45 @@
-import React, {MouseEvent, useContext, useEffect, useRef, useState} from "react";
+import React, {MouseEvent, useContext, useRef, useState} from "react";
 import styles from "./style.m.scss";
 import jc from "./../../Helpers/joinClassnames";
 import LangSwitch from "./../langSwitch/langSwitch";
 import {PAGES} from "./../../Enums/PAGES";
+import {LANGS} from "./../../Enums/LANGS";
 import {PageContext} from "./../Page";
 
 interface INav {
   title: string;
   alias: PAGES;
 }
-
-const navs: INav[] = [
-  {title: 'Home', alias: PAGES.HOME},
-  {title: 'About me', alias: PAGES.ABOUT_ME},
-  {title: 'Skills', alias: PAGES.SKILLS},
-  {title: 'Portfolio', alias: PAGES.PORTFOLIO},
-  {title: 'Contacts', alias: PAGES.CONTACTS},
-];
 const Header = () => {
-  const {activePage, changePage} = useContext(PageContext);
+  const {activePage, changePage, lang, headerHeight} = useContext(PageContext);
   const [openMenu, setOpenMenu] = useState(false);
   const [animMenu, setAnimMenu] = useState(false);
   const burgerRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
+
+  const isRu = lang === LANGS.RU;
+
+  const navs: INav[] = [
+    {
+      title: isRu ? 'Главная' : 'Home',
+      alias: PAGES.HOME
+    },
+    {
+      title: isRu ? 'Обо мне' : 'About me',
+      alias: PAGES.ABOUT_ME
+    },
+    {title: isRu ? 'Навыки' : 'Skills',
+      alias: PAGES.SKILLS
+    },
+    {
+      title: isRu ? 'Портфолио' : 'Portfolio',
+      alias: PAGES.PORTFOLIO
+    },
+    {
+      title: isRu ? 'Контакты' : 'Contacts',
+      alias: PAGES.CONTACTS
+    },
+  ];
 
   const onLinkClick = (e: MouseEvent, item: PAGES) => {
     e.preventDefault();
@@ -34,23 +51,17 @@ const Header = () => {
 
     changePage(item);
 
-    const isBurgerVisible: boolean =
-      burgerRef.current
-        ? getComputedStyle(burgerRef.current).getPropertyValue('--burger-visible') === '1'
-        : false;
-
     const itemEl = document.getElementById(item);
 
     if (itemEl) {
-      const headerHeight = navRef.current?.offsetHeight ? navRef.current.offsetHeight : 0;
       const offset =
-        (isBurgerVisible || item === PAGES.HOME)
+        (headerHeight === 0 || item === PAGES.HOME)
           ? itemEl.offsetTop
           : itemEl.offsetTop - headerHeight;
 
       window.scrollTo({
         top: offset,
-        behavior: isBurgerVisible ? 'auto' : 'smooth',
+        behavior: headerHeight === 0 ? 'auto' : 'smooth',
       });
     }
   };

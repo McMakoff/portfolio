@@ -8,6 +8,10 @@ $dangerColor: #ff0000;
 
 $mediaMore560: 560px;
 
+body {
+  --header-height: 0px;
+}
+
 @media (min-width: $mediaMore560) {
   body {
     --header-height: 56px;

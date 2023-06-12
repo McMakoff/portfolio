@@ -5,6 +5,7 @@ import Description from "./../common/Description/Description";
 import styles from "./style.m.scss";
 import {PAGES} from "./../../Enums/PAGES";
 import {PageContext} from "./../Page";
+import {LANGS} from "./../../Enums/LANGS";
 
 interface ISkill {
   name: string,
@@ -26,8 +27,9 @@ const skills: ISkill[] = [
   {name: 'Adobe Photoshop', icon: 'photoshop'},
 ];
 const Skills = () => {
-  const {onScrollPage} = useContext(PageContext);
+  const {onScrollPage, lang} = useContext(PageContext);
   const baseRef = useRef<HTMLElement>(null);
+  const isRu = lang === LANGS.RU;
 
   useEffect(() => {
     if (baseRef.current) {
@@ -38,10 +40,10 @@ const Skills = () => {
   return (
     <Wrapper ref={baseRef} id={PAGES.SKILLS}>
       <BlockTitle>
-        Skills
+        {isRu ? 'Навыки' : 'Skills'}
       </BlockTitle>
       <Description>
-        Работаю с такими технологиями как
+        {isRu ? 'Работаю с такими технологиями как' : 'I work with technologies such as'}
       </Description>
       <ul className={styles.skills}>
         {skills.map((item) => (

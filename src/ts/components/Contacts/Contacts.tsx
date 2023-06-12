@@ -6,6 +6,7 @@ import jc from "./../../Helpers/joinClassnames";
 import {PAGES} from "./../../Enums/PAGES";
 import styles from "./style.m.scss";
 import {PageContext} from "./../Page";
+import {LANGS} from "./../../Enums/LANGS";
 
 interface ISocial {
   name: string;
@@ -20,12 +21,13 @@ const socials:ISocial[] = [
   {name: 'phone', link: 'tel:+79230387064'},
 ];
 const Contacts = () => {
-  const {onScrollPage} = useContext(PageContext);
+  const {onScrollPage, lang} = useContext(PageContext);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [isStatusVisible, setStatusVisible] = useState(false);
   const baseRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const isRu = lang === LANGS.RU;
 
   useEffect(() => {
     if (baseRef.current) {
@@ -75,10 +77,13 @@ const Contacts = () => {
   return (
     <Wrapper ref={baseRef} id={PAGES.CONTACTS}>
       <BlockTitle>
-        Contacts
+        {isRu ? 'Контакты' : 'Contacts'}
       </BlockTitle>
       <Description>
-        Хотите узнать больше? <br/> Свяжитесь со мной любым из понравившихся способов!
+        {isRu
+          ? <>Хотите узнать больше? <br/> Свяжитесь со мной любым из понравившихся способов!</>
+          : <>Want to know more? <br/> Contact me in any of the ways you like!</>
+        }
       </Description>
 
       <form
@@ -90,25 +95,25 @@ const Contacts = () => {
           type="text"
           name={'name'}
           className={styles.input}
-          placeholder={'Name'}
+          placeholder={isRu ? 'Имя' : 'Name'}
           required
         />
         <input
           type="text"
           name={'contact'}
           className={styles.input}
-          placeholder={'Email or messenger'}
+          placeholder={isRu ? 'Емаил или мессенджер' : 'Email or messenger'}
           required
         />
         <textarea
           name={'message'}
           className={styles.input}
-          placeholder={'Message'}
+          placeholder={isRu ? 'Сообщение' : 'Message'}
           rows={5}
           required
         />
         <button type="submit" className={styles.sendBtn}>
-          Send Message
+          {isRu ? 'Отправить сообщение' : 'Send Message'}
         </button>
 
         {(success || error) && (
@@ -117,12 +122,24 @@ const Contacts = () => {
             onAnimationEnd={(e) => handleStatusAnimationEnd(e)}
           >
             <h3 className={styles.statusTitle}>
-              {success && 'Спасибо!'}
-              {error && 'Извините!'}
+              {success && (
+                isRu ? 'Спасибо!' : 'Thank you'
+              )}
+              {error && (
+                isRu ? 'Извините!' : 'Sorry'
+              )}
             </h3>
             <p className={styles.statusText}>
-              {success && 'Ваша заявка принята, скоро я с вами свяжусь!'}
-              {error && 'Что то пошло не так, попобуйте презагрузить страницу и отправить сообщение еще раз'}
+              {success && (
+                isRu
+                  ? 'Ваша заявка принята, скоро я с вами свяжусь!'
+                  : 'Your application has been accepted, I will contact you soon!'
+              )}
+              {error && (
+                isRu
+                  ? 'Что то пошло не так, попобуйте презагрузить страницу и отправить сообщение еще раз'
+                  : 'Something went wrong, try reloading the page and sending the message again'
+              )}
             </p>
           </div>
         )}

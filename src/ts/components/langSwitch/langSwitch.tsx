@@ -1,30 +1,25 @@
 import jc from "./../../Helpers/joinClassnames";
 import styles from "./style.m.scss";
-import React, {useState} from "react";
+import React, {useContext} from "react";
+import {LANGS} from "./../../Enums/LANGS";
+import {PageContext} from "./../Page";
 
 interface ILangSwitch {
   className?: string;
   size?: 'big' | 'small';
 }
-
-enum LANGUAGES {
-  RU = 'ru',
-  EN = 'en'
-}
-
-const langs = [LANGUAGES.RU, LANGUAGES.EN];
 const LangSwitch = ({className, size = 'big'}: ILangSwitch) => {
-
-  const [lang, setLang] = useState(LANGUAGES.RU);
-  const onButtonClick = (item: LANGUAGES) => {
-    setLang(item);
+  const {lang, changeLang} = useContext(PageContext);
+  const languages = [LANGS.RU, LANGS.EN];
+  const onButtonClick = (item: LANGS) => {
+    changeLang(item);
   };
 
   return (
     <div
       className={jc([styles.switch, Boolean(className) && className])}
     >
-      {langs.map((item, index) => (
+      {languages.map((item, index) => (
         <React.Fragment key={item}>
           <button
             className={jc([
@@ -38,7 +33,7 @@ const LangSwitch = ({className, size = 'big'}: ILangSwitch) => {
               <use xlinkHref={`./img/sprite.svg#${item}`}/>
             </svg>
           </button>
-          {(langs.length - 1 > index) && (
+          {(languages.length - 1 > index) && (
             <span className={jc([styles.switchSeparator, styles[`switchSeparator_${size}`],])}/>
           )}
         </React.Fragment>

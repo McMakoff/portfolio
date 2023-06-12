@@ -11,17 +11,19 @@ import {LANGS} from "./../Enums/LANGS";
 interface IPageContext {
   lang: LANGS;
   activePage: PAGES;
+
+  headerHeight: number;
   changeLang: (lang: LANGS) => void;
   changePage: (page: PAGES) => void;
-
-  onScrollPage: (el: HTMLElement, page: PAGES, callBack?: (y: number, elY: number, page: PAGES) => any) => void;
+  onScrollPage: (el: HTMLElement, page: PAGES) => void;
 }
 
-const defaultLang = localStorage.getItem('portfolioLang') as LANGS  || LANGS.RU;
+const defaultLang = localStorage.getItem('portfolioLang') as LANGS || LANGS.RU;
 
 export const PageContext = React.createContext<IPageContext>({
   lang: defaultLang,
   activePage: PAGES.HOME,
+  headerHeight: 0,
   changeLang: () => null,
   changePage: () => null,
   onScrollPage: () => null,
@@ -30,12 +32,12 @@ export const PageContext = React.createContext<IPageContext>({
 const Page = () => {
   const [lang, seLang] = useState(defaultLang);
   const [activePage, setActivePage] = useState(PAGES.HOME);
+  const headerHeightString = getComputedStyle(document.body).getPropertyValue('--header-height');
+  const headerHeight = headerHeightString ? Number(headerHeightString.slice(0, -2)) : 0;
 
-  const onScrollPage = (el: HTMLElement, page: PAGES, callBack?: (y: number, elY: number, page: PAGES) => any) => {
+  const onScrollPage = (el: HTMLElement, page: PAGES) => {
     window.addEventListener('scroll', () => {
-      const headerHeight = getComputedStyle(document.body).getPropertyValue('--header-height');
-      const shift = headerHeight ? Number(headerHeight.slice(0, -2)) : 0;
-      if (el.getBoundingClientRect().top <= shift) {
+      if (el.getBoundingClientRect().top <= headerHeight) {
         setActivePage(page);
       }
 
@@ -44,8 +46,6 @@ const Page = () => {
           setActivePage(page);
         }
       }
-
-      callBack && callBack(window.scrollY, el.clientTop, page);
     })
   };
 
@@ -59,7 +59,7 @@ const Page = () => {
   }
 
   return (
-    <PageContext.Provider value={{lang, activePage, onScrollPage, changeLang, changePage}}>
+    <PageContext.Provider value={{lang, activePage, headerHeight, onScrollPage, changeLang, changePage}}>
       <Header/>
       <Home/>
       <AboutMe/>
